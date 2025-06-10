@@ -3,6 +3,8 @@
 
 #include "tips.h"
 
+#define GT3DS_HEADER_STRING "\x1b[36;1m                  Game Tipper\x1b[0m\n\x1b[34;1m==================================================\x1b[0m\n\n"
+
 int main(int argc, char **argv)
 {
 	gfxInitDefault();
@@ -25,8 +27,8 @@ int main(int argc, char **argv)
 	consoleInit(GFX_BOTTOM, &bottomScreen);
 
 	consoleSelect(&topScreen);
-	printf("\x1b[36;1m                  Game Tipper\x1b[0m\n");
-	printf("\x1b[34;1m==================================================\x1b[0m\n\nPlease use the bottom screen to select the game\nyou want a hint for!\n");
+	printf(GT3DS_HEADER_STRING);
+	printf("Please use the bottom screen to select the game\nyou want a hint for!\n");
 
 	consoleSelect(&bottomScreen);
 	printf("\x1b[1;1HGame: %s", games[currentlySelectedGame]);
@@ -59,24 +61,21 @@ int main(int argc, char **argv)
 		else if (kDown & KEY_A) {
 			consoleSelect(&topScreen);
 			consoleClear();
-			printf("\x1b[36;1m                  Game Tipper\x1b[0m\n");
-			printf("\x1b[34;1m==================================================\x1b[0m\n\n");
+			printf(GT3DS_HEADER_STRING);
 			printf(GetRandomTip(games[currentlySelectedGame]));
 			printf("\n");
 		}
 		else if (kDown & KEY_X) {
 			consoleSelect(&topScreen);
 			consoleClear();
-			printf("\x1b[36;1m                  Game Tipper\x1b[0m\n");
-			printf("\x1b[34;1m==================================================\x1b[0m\n\n");
-			printf("\x1b[4;1HVersion 0.2.0");
+			printf(GT3DS_HEADER_STRING);
+			printf("\x1b[4;1HVersion 0.3.0");
 			printf("\x1b[5;1HAdded:");
-			printf("\x1b[6;2H- Animal Crossing NL support");
-			printf("\x1b[7;2H- Animal Crossing HHD support");
-			printf("\x1b[8;2H- 10 new Terraria tips");
-			printf("\x1b[9;2H- 2 new Minecraft tips");
-			printf("\x1b[10;2H- 1 new Super Mario 3D Land tips");
-			printf("\x1b[11;2H- 2 new Super Mario Maker 3DS tips");
+			printf("\x1b[6;2H- 12 new Minecraft tips");
+			printf("\x1b[7;2H- 1 new Super Mario Maker 3DS tip");
+			printf("\x1b[8;2H- 1 new Animal Crossing HHD tip");
+			printf("\x1b[9;2H- Added a new secret that can appear in tips");
+		    printf("\x1b[10;2H  sometimes.");
 		}
 
 		if (hasSelectionChanged) {
